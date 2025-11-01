@@ -1,0 +1,57 @@
+import { useState } from 'react';
+import styles from './ColumnForm.module.scss';
+import TextInput from '../TextInput/TextInput';
+import Button from '../Button/Button';
+
+const ColumnForm = ({ onAddColumn }) => {
+  const [title, setTitle] = useState('');
+  const [icon, setIcon] = useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const trimmedTitle = title.trim();
+    const trimmedIcon = icon.trim();
+
+    if (!trimmedTitle || !trimmedIcon) {
+      return;
+    }
+
+    onAddColumn?.({ title: trimmedTitle, icon: trimmedIcon });
+    setTitle('');
+    setIcon('');
+  };
+
+  return (
+    <form className={styles.columnForm} onSubmit={handleSubmit}>
+      <div className={styles.field}>
+        <label className={styles.label} htmlFor="column-title">
+          Title
+        </label>
+        <TextInput
+          id="column-title"
+          placeholder="Enter column title"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+        />
+      </div>
+      <div className={styles.field}>
+        <label className={styles.label} htmlFor="column-icon">
+          Icon
+        </label>
+        <TextInput
+          id="column-icon"
+          placeholder="Enter column icon"
+          value={icon}
+          onChange={(event) => setIcon(event.target.value)}
+        />
+      </div>
+      <div className={styles.button}>
+        <Button type="submit" aria-label="Add column">
+          <span className="fa fa-plus" aria-hidden="true" />
+        </Button>
+      </div>
+    </form>
+  );
+};
+
+export default ColumnForm;

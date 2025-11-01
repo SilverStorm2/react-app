@@ -1,0 +1,24 @@
+@import '../../styles/settings.scss';
+
+.cardForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $base-size;
+  padding: 10px;
+  flex-wrap: wrap;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: $base-size;
+  }
+}
+
+.button {
+  flex-shrink: 0;
+
+  @media (max-width: 767px) {
+    align-self: center;
+  }
+}
