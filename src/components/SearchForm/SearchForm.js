@@ -1,14 +1,10 @@
-const SearchForm = ({ onSearch }) => {
+import styles from './SearchForm.module.scss';
+
+const SearchForm = () => {
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        const q = e.target.elements.query?.value;
-        if (onSearch) onSearch(q);
-      }}
-    >
-      <input name="query" type="text" placeholder="Search..." />
-      <button type="submit">Search</button>
+    <form className={styles.searchForm}>
+      <input className={styles.input} type="text" />
+      <button className={styles.button}>Search</button>
     </form>
   );
 };
