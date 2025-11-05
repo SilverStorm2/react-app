@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import styles from './ColumnForm.module.scss';
 import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
+import { addColumn } from '../../redux/store';
 
 const ColumnForm = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const ColumnForm = () => {
       return;
     }
 
-    dispatch({ type: 'ADD_COLUMN', newColumn: { title: trimmedTitle, icon: trimmedIcon } });
+    dispatch(addColumn({ title: trimmedTitle, icon: trimmedIcon }));
     setTitle('');
     setIcon('');
   };
