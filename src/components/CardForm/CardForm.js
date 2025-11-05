@@ -6,19 +6,21 @@ import TextInput from './../TextInput/TextInput';
 const CardForm = (props) => {
   const [title, setTitle] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!title.trim()) {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const trimmedTitle = title.trim();
+    if (!trimmedTitle) {
       return;
     }
 
-    props.action?.({ title: title.trim() }, props.columnId);
+    props.action?.({ title: trimmedTitle }, props.columnId);
     setTitle('');
   };
 
   return (
     <form className={styles.cardForm} onSubmit={handleSubmit}>
-      <TextInput value={title} onChange={(e) => setTitle(e.target.value)} />
+      <TextInput value={title} onChange={(event) => setTitle(event.target.value)} />
       <Button type="submit">Add card</Button>
     </form>
   );

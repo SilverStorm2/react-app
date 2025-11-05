@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styles from './ColumnForm.module.scss';
 import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
 
-const ColumnForm = ({ onAddColumn }) => {
+const ColumnForm = () => {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [icon, setIcon] = useState('');
 
@@ -16,7 +18,7 @@ const ColumnForm = ({ onAddColumn }) => {
       return;
     }
 
-    onAddColumn?.({ title: trimmedTitle, icon: trimmedIcon });
+    dispatch({ type: 'ADD_COLUMN', newColumn: { title: trimmedTitle, icon: trimmedIcon } });
     setTitle('');
     setIcon('');
   };
