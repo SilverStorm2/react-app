@@ -1,9 +1,12 @@
 import styles from './CardForm.module.scss';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Button from './../Button/Button';
 import TextInput from './../TextInput/TextInput';
+import { addCard } from '../../redux/store';
 
-const CardForm = (props) => {
+const CardForm = ({ columnId }) => {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('');
 
   const handleSubmit = (event) => {
@@ -14,7 +17,7 @@ const CardForm = (props) => {
       return;
     }
 
-    props.action?.({ title: trimmedTitle }, props.columnId);
+    dispatch(addCard({ columnId, title: trimmedTitle }));
     setTitle('');
   };
 

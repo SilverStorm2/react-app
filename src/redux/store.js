@@ -10,11 +10,19 @@ export const getFilteredCards = ({ cards, searchString }, columnId) => cards
 
 // action creators
 export const addColumn = (payload) => ({ type: 'ADD_COLUMN', payload });
+export const addCard = (payload) => ({ type: 'ADD_CARD', payload });
+export const updateSearchString = (payload) => ({ type: 'UPDATE_SEARCHSTRING', payload });
 
 const reducer = (state, action) => {
   switch (action.type) {
     case 'ADD_COLUMN':
       return { ...state, columns: [...state.columns, action.payload] };
+    case 'ADD_CARD': {
+      const nextId =
+        state.cards.length > 0 ? Math.max(...state.cards.map((card) => card.id)) + 1 : 1;
+      const newCard = { id: nextId, ...action.payload };
+      return { ...state, cards: [...state.cards, newCard] };
+    }
     case 'UPDATE_SEARCHSTRING':
       return { ...state, searchString: action.payload };
     default:
