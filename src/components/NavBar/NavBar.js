@@ -1,31 +1,44 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Container from '../Container/Container.js';
 import styles from './NavBar.module.scss';
 
 const NavBar = () => {
-  const getNavLinkClass = ({ isActive }) =>
-    isActive ? `${styles.link} ${styles.linkActive}` : styles.link;
-
   return (
     <nav className={styles.navbar}>
       <Container>
         <div className={styles.navbarInner}>
-          <NavLink to="/" className={styles.logo} aria-label="Home" end>
+          <Link to="/" className={styles.logo} aria-label="Home">
             <span className={`fa fa-tasks ${styles.icon}`} aria-hidden="true" />
-          </NavLink>
+          </Link>
           <ul className={styles.menu}>
             <li>
-              <NavLink to="/" end className={getNavLinkClass}>
+              <NavLink
+                to="/"
+                end
+                className={({ isActive }) =>
+                  isActive ? `${styles.link} ${styles.linkActive}` : styles.link
+                }
+              >
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to="/favorite" className={getNavLinkClass}>
+              <NavLink
+                to="/favorite"
+                className={({ isActive }) =>
+                  isActive ? `${styles.link} ${styles.linkActive}` : styles.link
+                }
+              >
                 Favorite
               </NavLink>
             </li>
             <li>
-              <NavLink to="/about" className={getNavLinkClass}>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive ? `${styles.link} ${styles.linkActive}` : styles.link
+                }
+              >
                 About
               </NavLink>
             </li>
