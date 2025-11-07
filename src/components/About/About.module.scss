@@ -1,0 +1,12 @@
+@import '../../styles/settings.scss';
+
+.wrapper {
+  text-align: center;
+}
+
+.text {
+  margin: 0 auto;
+  max-width: 600px;
+  font-size: ($base-size * 1.5);
+  line-height: 1.6;
+}
