@@ -15,6 +15,12 @@
     color: $color-dark;
 }
 
+.actions {
+    display: flex;
+    gap: ($base-size / 2);
+    align-items: center;
+}
+
 .favoriteButton {
     border: none;
     background: transparent;
@@ -32,4 +38,19 @@
 
 .isFavorite {
     color: $color-warning;
+}
+
+.removeButton {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: lighten($color-dark, 40%);
+    font-size: ($base-size * 1.2);
+    transition: color 0.2s ease;
+    padding: 0;
+}
+
+.removeButton:hover,
+.removeButton:focus {
+    color: $color-danger;
 }
