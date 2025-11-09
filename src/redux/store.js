@@ -3,6 +3,11 @@ import initialState from './initialState';
 import { strContains } from '../utils/strContains';
 
 export const getAllColumns = (state) => state.columns;
+export const getAllLists = (state) => state.lists;
+export const getColumnsByList = ({ columns }, listId) =>
+  columns.filter((column) => column.listId === listId);
+export const getListById = ({ lists }, listId) =>
+  lists.find((list) => list.id === listId);
 
 // selectors
 export const getFilteredCards = ({ cards, searchString }, columnId) => cards
@@ -20,7 +25,7 @@ const reducer = (state, action) => {
     case 'ADD_CARD': {
       const nextId =
         state.cards.length > 0 ? Math.max(...state.cards.map((card) => card.id)) + 1 : 1;
-      const newCard = { id: nextId, ...action.payload };
+      const newCard = { id: String(nextId), ...action.payload };
       return { ...state, cards: [...state.cards, newCard] };
     }
     case 'UPDATE_SEARCHSTRING':
