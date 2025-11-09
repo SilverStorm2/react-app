@@ -5,7 +5,7 @@ import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
 import { addColumn } from '../../redux/store';
 
-const ColumnForm = () => {
+const ColumnForm = ({ listId }) => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [icon, setIcon] = useState('');
@@ -15,11 +15,11 @@ const ColumnForm = () => {
     const trimmedTitle = title.trim();
     const trimmedIcon = icon.trim();
 
-    if (!trimmedTitle || !trimmedIcon) {
+    if (!trimmedTitle || !trimmedIcon || !listId) {
       return;
     }
 
-    dispatch(addColumn({ title: trimmedTitle, icon: trimmedIcon }));
+    dispatch(addColumn({ title: trimmedTitle, icon: trimmedIcon, listId }));
     setTitle('');
     setIcon('');
   };

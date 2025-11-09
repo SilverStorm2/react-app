@@ -1,0 +1,35 @@
+@use "sass:math";
+@import '../../styles/settings.scss';
+
+.listForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: ($base-size * 1.5);
+  padding: 10px;
+  flex-wrap: wrap;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: $color-light;
+  min-width: 220px;
+}
+
+.label {
+  font-weight: 600;
+  margin: 0 0 math.div($base-size, 2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.button {
+  align-self: center;
+}

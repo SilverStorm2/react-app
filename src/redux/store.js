@@ -1,4 +1,5 @@
 import { createStore } from 'redux';
+import shortid from 'shortid';
 import initialState from './initialState';
 import { strContains } from '../utils/strContains';
 
@@ -8,24 +9,31 @@ export const getColumnsByList = ({ columns }, listId) =>
   columns.filter((column) => column.listId === listId);
 export const getListById = ({ lists }, listId) =>
   lists.find((list) => list.id === listId);
+export const getGlobalSearchStringValue = (state) => state.searchString;
 
 // selectors
 export const getFilteredCards = ({ cards, searchString }, columnId) => cards
   .filter(card => card.columnId === columnId && strContains(card.title, searchString));
 
 // action creators
+export const addList = (payload) => ({ type: 'ADD_LIST', payload });
 export const addColumn = (payload) => ({ type: 'ADD_COLUMN', payload });
 export const addCard = (payload) => ({ type: 'ADD_CARD', payload });
 export const updateSearchString = (payload) => ({ type: 'UPDATE_SEARCHSTRING', payload });
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'ADD_LIST': {
+      const newList = { id: shortid(), ...action.payload };
+      return { ...state, lists: [...state.lists, newList] };
+    }
     case 'ADD_COLUMN':
-      return { ...state, columns: [...state.columns, action.payload] };
+      return {
+        ...state,
+        columns: [...state.columns, { id: shortid(), ...action.payload }],
+      };
     case 'ADD_CARD': {
-      const nextId =
-        state.cards.length > 0 ? Math.max(...state.cards.map((card) => card.id)) + 1 : 1;
-      const newCard = { id: String(nextId), ...action.payload };
+      const newCard = { id: shortid(), ...action.payload };
       return { ...state, cards: [...state.cards, newCard] };
     }
     case 'UPDATE_SEARCHSTRING':
