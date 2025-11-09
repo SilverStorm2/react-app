@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import styles from './ListForm.module.scss';
 import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
-import { addList } from '../../redux/store';
+import { addList } from '../../redux/listsRedux';
 
 const ListForm = () => {
   const dispatch = useDispatch();
